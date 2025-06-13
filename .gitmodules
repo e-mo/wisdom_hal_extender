@@ -1,3 +1,9 @@
 [submodule "modules/radio"]
 	path = modules/radio
 	url = https://github.com/e-mo/whale_radio_rfm69.git
+[submodule "modules/rtc"]
+	path = modules/rtc
+	url = git@github.com:VTC-WISDOM/whale_rtc.git
+[submodule "modules/eeprom"]
+	path = modules/eeprom
+	url = git@github.com:VTC-WISDOM/whale_eeprom.git

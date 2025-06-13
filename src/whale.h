@@ -5,6 +5,7 @@
 #include <assert.h>
 
 #include "whale_radio.h"
+#include "whale_rtc.h"
 
 // Return value of all unimplemented functions
 #define FUNC_UNIMPLEMENTED (-1)
