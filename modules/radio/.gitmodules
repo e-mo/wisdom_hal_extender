@@ -1,0 +1,3 @@
+[submodule "libs/rp2x_rfm69_rudp"]
+	path = libs/rp2x_rfm69_rudp
+	url = https://github.com/e-mo/rp2x_rfm69_rudp.git
