@@ -8,8 +8,9 @@ struct rudp_context rudp_ctx = {0};
 static int W_RADIO_MODULE_ERROR = RUDP_UNINITIALIZED;
 
 int w_radio_init(void) {
+
 	// SPI init
-    spi_init(W_RADIO_SPI, 1000*1000);
+    spi_init(W_RADIO_SPI, 1000 * 1000);
     gpio_set_function(W_RADIO_PIN_MISO, GPIO_FUNC_SPI);
     gpio_set_function(W_RADIO_PIN_SCK,  GPIO_FUNC_SPI);
     gpio_set_function(W_RADIO_PIN_MOSI, GPIO_FUNC_SPI);
@@ -43,14 +44,15 @@ int w_radio_init(void) {
 		return W_RADIO_ERROR;
 	}
 
+
 	// TEST STUFF
 	//rfm69_power_level_set(&rfm69_ctx, -2);
-    //rfm69_bitrate_set(&rfm69_ctx, RFM69_MODEM_BITRATE_300);
-	//rfm69_fdev_set(&rfm69_ctx, 300000);
-	//rfm69_rxbw_set(&rfm69_ctx, RFM69_RXBW_MANTISSA_16, 0);
+    rfm69_bitrate_set(&rfm69_ctx, RFM69_MODEM_BITRATE_300);
+	rfm69_fdev_set(&rfm69_ctx, 300000);
+	rfm69_rxbw_set(&rfm69_ctx, RFM69_RXBW_MANTISSA_16, 0);
 
 	uint8_t whale_sync_word[8] = {0x45, 0x01, 0xB7, 0x9A, 0xFE, 0x01, 0xAC, 0x86};
-	rfm69_sync_value_set(&rfm69_ctx, whale_sync_word, 4);
+	rfm69_sync_value_set(&rfm69_ctx, whale_sync_word, 8);
 
 	//uint8_t sync_config = 0;
 	//rfm69_read(&rfm69_ctx, RFM69_REG_SYNC_CONFIG, &sync_config, 1);
@@ -128,7 +130,7 @@ int w_radio_tx(
 		buffer_size
 	);
 
-	if (W_RADIO_MODULE_ERROR != RUDP_TX_SUCCESS)
+	if (W_RADIO_MODULE_ERROR != RUDP_OK)
 		return W_RADIO_ERROR;
 
 	return W_RADIO_OK;
@@ -146,7 +148,7 @@ int w_radio_rx(
 		buffer_size
 	);
 
-	if (W_RADIO_MODULE_ERROR != RUDP_RX_SUCCESS)
+	if (W_RADIO_MODULE_ERROR != RUDP_OK)
 		return W_RADIO_ERROR;
 
 	*payload_size = rudp_ctx.trx_report.payload_size;
